@@ -14,7 +14,9 @@ body {
 
 .to-do {
   list-style-type: none;
-  padding: 10px;
+  padding: 0;
+  margin: 0;
+  width: 100%
 }
 
 .move {
@@ -71,11 +73,20 @@ body {
   padding-right: 10px;
 }
 
-.todo-clear a {
+.clear-button {
   text-decoration: none;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
   color: rgb(146, 145, 145);
+  background-color: rgb(232, 233, 235);
+  border: 0;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+.todo-clear {
+  background-color: rgb(232, 233, 235);
+  height: 100%;
 }

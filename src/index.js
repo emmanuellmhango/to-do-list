@@ -52,7 +52,7 @@ function displayToDoList(tasks) {
     listItem.appendChild(dots);
     ul.append(listItem);
   });
-  ul.innerHTML += '<li class=\'todo-clear\'><a href=\'#\'>Clear all completed</a></li>';
+  ul.innerHTML += '<li class=\'todo-clear\'><button href=\'#\' class=\'clear-button\'>Clear all completed</button></li>';
   list.appendChild(ul);
 }
 
