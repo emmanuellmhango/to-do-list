@@ -20,7 +20,7 @@ const tasks = [
     id: '4',
     description: 'My task 4',
     completed: false,
-  }
+  },
 ];
 
 function displayToDoList(tasks) {
@@ -34,7 +34,7 @@ function displayToDoList(tasks) {
   inpu.setAttribute('placeholder', 'Add to your list...');
   listInput.appendChild(inpu);
   ul.appendChild(listInput);
-  tasks.forEach((task, index) => {
+  tasks.forEach((task) => {
     const listItem = document.createElement('li');
     listItem.classList.add('task');
     const checkbox = document.createElement('input');
@@ -52,9 +52,8 @@ function displayToDoList(tasks) {
     listItem.appendChild(dots);
     ul.append(listItem);
   });
-  ul.innerHTML += `<li class="todo-clear"><a href="#">Clear all completed</a></li>`;
+  ul.innerHTML += `<li class='todo-clear'><a href='#'>Clear all completed</a></li>`;
   list.appendChild(ul);
 }
 
 displayToDoList(tasks);
-
