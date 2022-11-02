@@ -10,6 +10,7 @@ body {
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-shadow: 2px 3px 2px 1px rgb(199, 198, 198);
 }
 
 .to-do {
