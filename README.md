@@ -1,10 +1,9 @@
 # To Do List Application
 
-> Create  a daily task
-> Edit the tasks
-> Reposition the tasks
-> Delete the tasks
-
+> - Create  a daily task
+  - Edit the tasks
+  - Reposition the tasks
+  - Delete the tasks
 
 ## Built With
 
