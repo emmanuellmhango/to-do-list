@@ -6,7 +6,7 @@ export default class Todo {
   }
 
   addTask() {
-    const tasks = JSON.parse(localStorage.getItem('todolist')  || '[]');
+    const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     const task = {
       id: tasks.length > 0 ? tasks.length + 1 : 1,
       description: this.description,
@@ -19,7 +19,7 @@ export default class Todo {
 
   static addEditedTask(id, task) {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
-    for (let i = 0; i < tasks.length; i++) {
+    for (let i = 0; i < tasks.length; i+1) {
       if (tasks[i].id === id) {
         tasks[i].description = task;
         break;
