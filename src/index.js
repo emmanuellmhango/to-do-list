@@ -1,5 +1,5 @@
 import './style.css';
-import Todo from './crud';
+import Todo from './crud.js';
 
 Todo.displayToDoList();
 
@@ -24,9 +24,9 @@ recycle.forEach((element) => {
     elem.classList.add('mode-del');
     elem.classList.add('fa-trash-o');
     elem.classList.add('delete-task');
-    const tasks = JSON.parse(localStorage.getItem('todolist')  || '[]');
+    const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     let descr = null;
-    for (let i = 0; i < tasks.length; i++) {
+    for (let i = 0; i < tasks.length; i + 1) {
       if (tasks[i].id === id) {
         descr = tasks[i].description;
       }
@@ -34,7 +34,7 @@ recycle.forEach((element) => {
     const ul = document.querySelector('.to-do');
     const childToBeReplaced = ul.children[id];
     const listInput = document.createElement('li');
-    listInput.id = id + '-task';
+    listInput.id = id.toString().concat('-task');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     listInput.appendChild(checkbox);
@@ -47,7 +47,7 @@ recycle.forEach((element) => {
     dots.classList.add('fa', 'fa-trash-o', 'span-two', 'move', 'recycle-bin', 'delete-task', 'mode-del');
     listInput.appendChild(dots);
     ul.appendChild(listInput);
-    ul.replaceChild(listInput, childToBeReplaced); 
+    ul.replaceChild(listInput, childToBeReplaced);
     const addEditedTodo = document.getElementById('edit-todo-input');
     addEditedTodo.addEventListener('keypress', (ev) => {
       if (ev.key === 'Enter') {
