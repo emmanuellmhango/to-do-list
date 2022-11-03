@@ -1,59 +1,68 @@
 import './style.css';
+import Todo from './crud.js';
 
-const tasks = [
-  {
-    id: '1',
-    description: 'My task 1',
-    completed: false,
-  },
-  {
-    id: '2',
-    description: 'My task 2',
-    completed: true,
-  },
-  {
-    id: '3',
-    description: 'My task 3',
-    completed: false,
-  },
-  {
-    id: '4',
-    description: 'My task 4',
-    completed: false,
-  },
-];
+Todo.displayToDoList();
 
-function displayToDoList(tasks) {
-  const list = document.querySelector('.todo-list');
-  const ul = document.createElement('ul');
-  ul.classList.add('to-do');
+const addTodo = document.querySelector('.todo-input');
+addTodo.addEventListener('keypress', (ev) => {
+  if (ev.key === 'Enter') {
+    const task = addTodo.value;
+    const todo = new Todo(task);
+    if (todo.addTask() === true) {
+      window.history.go(0);
+    }
+  }
+});
 
-  const listInput = document.createElement('li');
-  const inpu = document.createElement('input');
-  inpu.classList.add('todo-input');
-  inpu.setAttribute('placeholder', 'Add to your list...');
-  listInput.appendChild(inpu);
-  ul.appendChild(listInput);
-  tasks.forEach((task) => {
-    const listItem = document.createElement('li');
-    listItem.classList.add('task');
+const recycle = document.querySelectorAll('.recycle-bin');
+recycle.forEach((element) => {
+  element.addEventListener('click', () => {
+    const id = parseInt(element.getAttribute('id'), 10);
+    const elem = document.getElementById(id.toString());
+    elem.classList.remove('fa-ellipsis-v');
+    elem.classList.remove('move');
+    elem.classList.add('mode-del');
+    elem.classList.add('fa-trash-o');
+    elem.classList.add('delete-task');
+    const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
+    let descr = null;
+    tasks.forEach((val) => {
+      if (val.index === id) {
+        descr = val.description;
+      }
+    });
+    const ul = document.querySelector('.to-do');
+    const childToBeReplaced = ul.children[id];
+    const listInput = document.createElement('li');
+    listInput.id = id.toString().concat('-task');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.checked = task.completed;
-    listItem.appendChild(checkbox);
-
-    const listItemDescription = document.createElement('span');
-    listItemDescription.classList.add('description');
-    listItemDescription.innerText = task.description;
-    listItem.appendChild(listItemDescription);
-
+    listInput.appendChild(checkbox);
+    const inpu = document.createElement('input');
+    inpu.classList.add('style-left', 'todo-input');
+    inpu.id = 'edit-todo-input';
+    inpu.setAttribute('value', descr);
+    listInput.appendChild(inpu);
     const dots = document.createElement('i');
-    dots.setAttribute('class', 'fa fa-ellipsis-v span-two move');
-    listItem.appendChild(dots);
-    ul.append(listItem);
+    dots.classList.add('fa', 'fa-trash-o', 'span-two', 'move', 'recycle-bin', 'delete-task', 'mode-del');
+    listInput.appendChild(dots);
+    ul.appendChild(listInput);
+    ul.replaceChild(listInput, childToBeReplaced);
+    const addEditedTodo = document.getElementById('edit-todo-input');
+    addEditedTodo.addEventListener('keypress', (ev) => {
+      if (ev.key === 'Enter') {
+        const task = addEditedTodo.value;
+        if (Todo.addEditedTask(id, task) === true) {
+          window.history.go(0);
+        }
+      }
+    });
+    const elementDiv = id.toString().concat('-task');
+    const del = document.querySelector('.delete-task');
+    del.addEventListener('click', () => {
+      if (Todo.removeTask(id) === true) {
+        document.getElementById(elementDiv).remove();
+      }
+    });
   });
-  ul.innerHTML += '<li class=\'todo-clear\'><button href=\'#\' class=\'clear-button\'>Clear all completed</button></li>';
-  list.appendChild(ul);
-}
-
-displayToDoList(tasks);
+});
