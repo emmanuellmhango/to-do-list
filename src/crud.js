@@ -6,7 +6,7 @@ export default class Todo {
   }
 
   addTask() {
-    const tasks = JSON.parse(localStorage.getItem('todolist')  || '[]');
+    const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     const task = {
       id: tasks.length > 0 ? tasks.length + 1 : 1,
       description: this.description,
@@ -29,7 +29,7 @@ export default class Todo {
   }
 
   static displayToDoList() {
-    const tasks = JSON.parse(localStorage.getItem('todolist')  || '[]');
+    const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     const list = document.querySelector('.todo-list');
     const ul = document.createElement('ul');
     ul.classList.add('to-do');
@@ -55,7 +55,7 @@ export default class Todo {
       listItem.appendChild(listItemDescription);
 
       const dots = document.createElement('i');
-      dots.classList.add('fa', 'fa-ellipsis-v','span-two', 'move', 'recycle-bin');
+      dots.classList.add('fa', 'fa-ellipsis-v', 'span-two', 'move', 'recycle-bin');
       dots.id = task.id;
       listItem.appendChild(dots);
       ul.append(listItem);
@@ -66,7 +66,7 @@ export default class Todo {
 
   static removeTask(id) {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
-    tasks.forEach((val, index) => { 
+    tasks.forEach((val, index) => {
       if (val.id == id) {
         tasks.splice(index, 1);
       }
@@ -79,5 +79,4 @@ export default class Todo {
     localStorage.setItem('todolist', JSON.stringify(tasks));
     return true;
   }
-
 }
