@@ -13,6 +13,10 @@ body {
   box-shadow: 2px 3px 2px 1px rgb(199, 198, 198);
 }
 
+.style-left {
+  padding-left: 10px;
+}
+
 .to-do {
   list-style-type: none;
   padding: 0;
@@ -22,6 +26,12 @@ body {
 
 .move {
   cursor: move;
+  caret-color: rgb(79, 78, 78);
+  font-size: 15px;
+}
+
+.mode-del {
+  cursor: pointer;
   caret-color: rgb(79, 78, 78);
   font-size: 15px;
 }
