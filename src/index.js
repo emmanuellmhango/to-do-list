@@ -26,11 +26,11 @@ recycle.forEach((element) => {
     elem.classList.add('delete-task');
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     let descr = null;
-    for (let i = 0; i < tasks.length; i + 1) {
-      if (tasks[i].id === id) {
-        descr = tasks[i].description;
+    tasks.forEach((val) => {
+      if (val.id === id) {
+        descr = val.description;
       }
-    }
+    });
     const ul = document.querySelector('.to-do');
     const childToBeReplaced = ul.children[id];
     const listInput = document.createElement('li');
@@ -47,7 +47,7 @@ recycle.forEach((element) => {
     dots.classList.add('fa', 'fa-trash-o', 'span-two', 'move', 'recycle-bin', 'delete-task', 'mode-del');
     listInput.appendChild(dots);
     ul.appendChild(listInput);
-    ul.replaceChild(listInput, childToBeReplaced);
+    ul.replaceChild(listInput, childToBeReplaced); 
     const addEditedTodo = document.getElementById('edit-todo-input');
     addEditedTodo.addEventListener('keypress', (ev) => {
       if (ev.key === 'Enter') {
