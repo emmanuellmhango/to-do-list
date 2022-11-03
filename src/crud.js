@@ -67,7 +67,7 @@ export default class Todo {
   static removeTask(id) {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     tasks.forEach((val, index) => {
-      if (val.id == id) {
+      if (val.id === id) {
         tasks.splice(index, 1);
       }
     });
