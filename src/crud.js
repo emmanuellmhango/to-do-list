@@ -1,6 +1,6 @@
 export default class Todo {
   constructor(description) {
-    this.id = 0;
+    this.index = 0;
     this.description = description;
     this.completed = false;
   }
@@ -8,7 +8,7 @@ export default class Todo {
   addTask() {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     const task = {
-      id: tasks.length > 0 ? tasks.length + 1 : 1,
+      index: tasks.length > 0 ? tasks.length + 1 : 1,
       description: this.description,
       completed: this.completed,
     };
@@ -20,7 +20,7 @@ export default class Todo {
   static addEditedTask(id, task) {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
     tasks.forEach((val) => {
-      if (val.id === id) {
+      if (val.index === id) {
         val.description = task;
       }
     });
@@ -43,7 +43,7 @@ export default class Todo {
     tasks.forEach((task) => {
       const listItem = document.createElement('li');
       listItem.classList.add('task');
-      listItem.id = task.id.toString().concat('-task');
+      listItem.id = task.index.toString().concat('-task');
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.checked = task.completed;
@@ -56,7 +56,7 @@ export default class Todo {
 
       const dots = document.createElement('i');
       dots.classList.add('fa', 'fa-ellipsis-v', 'span-two', 'move', 'recycle-bin');
-      dots.id = task.id;
+      dots.id = task.index;
       listItem.appendChild(dots);
       ul.append(listItem);
     });
@@ -66,14 +66,14 @@ export default class Todo {
 
   static removeTask(id) {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
-    tasks.forEach((val, index) => {
-      if (val.id === id) {
-        tasks.splice(index, 1);
+    tasks.forEach((val, ind) => {
+      if (val.index === id) {
+        tasks.splice(ind, 1);
       }
     });
     let keyId = 1;
     tasks.forEach((val) => {
-      val.id = keyId;
+      val.index = keyId;
       keyId += 1;
     });
     localStorage.setItem('todolist', JSON.stringify(tasks));
