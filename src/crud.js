@@ -46,7 +46,7 @@ export default class Todo {
       listItem.id = task.index.toString().concat('-task');
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-      checkbox.checked = task.completed;
+      checkbox.id = task.index.toString().concat('-check');
       listItem.appendChild(checkbox);
 
       const listItemDescription = document.createElement('span');
@@ -60,7 +60,7 @@ export default class Todo {
       listItem.appendChild(dots);
       ul.append(listItem);
     });
-    ul.innerHTML += '<li class=\'todo-clear\'><button href=\'#\' class=\'clear-button\'>Clear all completed</button></li>';
+    ul.innerHTML += '<li class=\'todo-clear\'><button type=\'button\' class=\'clear-button\'>Clear all completed</button></li>';
     list.appendChild(ul);
   }
 

@@ -1,7 +1,9 @@
 import './style.css';
 import Todo from './crud.js';
+import Interaction from './interaction.js';
 
 Todo.displayToDoList();
+Interaction.checkTask();
 
 const addTodo = document.querySelector('.todo-input');
 addTodo.addEventListener('keypress', (ev) => {
@@ -65,4 +67,28 @@ recycle.forEach((element) => {
       }
     });
   });
+});
+
+const tasksDiv = document.querySelectorAll('.task');
+tasksDiv.forEach((element) => {
+  element.addEventListener('change', () => {
+    const id = parseInt(element.getAttribute('id'), 10);
+    let taskId = id.toString().concat('-task');
+    const task = document.getElementById(taskId);
+    const changeState = Interaction.updateState(id);
+    if (changeState === true) {
+      task.style.textDecoration = 'line-through';
+      task.style.fontStyle = 'italic';
+    } else {
+      task.style.textDecoration = 'none';
+      task.style.fontStyle = 'normal';
+    }
+  });
+});
+
+const clearBtn = document.querySelector('.clear-button');
+clearBtn.addEventListener('click', () => { 
+  if (Interaction.clearChecked() === true) {
+    window.history.go(0);
+  }
 });
