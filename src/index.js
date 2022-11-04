@@ -1,6 +1,6 @@
 import './style.css';
-import Todo from './crud.js';
-import Interaction from './interaction.js';
+import Todo from '../modules/crud.js';
+import Interaction from '../modules/interaction.js';
 
 Todo.displayToDoList();
 Interaction.checkTask();
