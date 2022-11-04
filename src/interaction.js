@@ -1,4 +1,3 @@
-
 export default class interation {
   static updateState(id) {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
@@ -7,10 +6,10 @@ export default class interation {
       if (val.index === id) {
         if (val.completed === true) {
           val.completed = false;
-          result = false
+          result = false;
         } else {
           val.completed = true;
-          result = true
+          result = true;
         }
       }
     });
@@ -45,9 +44,7 @@ export default class interation {
 
   static clearChecked() {
     const tasks = JSON.parse(localStorage.getItem('todolist') || '[]');
-    const newTasks = tasks.filter((val) => {
-      return val.completed === false;
-    });
+    const newTasks = tasks.filter((val) => val.completed === false);
     let keyId = 1;
     newTasks.forEach((val) => {
       val.index = keyId;

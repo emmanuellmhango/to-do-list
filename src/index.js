@@ -73,7 +73,7 @@ const tasksDiv = document.querySelectorAll('.task');
 tasksDiv.forEach((element) => {
   element.addEventListener('change', () => {
     const id = parseInt(element.getAttribute('id'), 10);
-    let taskId = id.toString().concat('-task');
+    const taskId = id.toString().concat('-task');
     const task = document.getElementById(taskId);
     const changeState = Interaction.updateState(id);
     if (changeState === true) {
@@ -87,7 +87,7 @@ tasksDiv.forEach((element) => {
 });
 
 const clearBtn = document.querySelector('.clear-button');
-clearBtn.addEventListener('click', () => { 
+clearBtn.addEventListener('click', () => {
   if (Interaction.clearChecked() === true) {
     window.history.go(0);
   }
