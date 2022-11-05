@@ -26,7 +26,7 @@ Clone this repository and open it in your browser.
 
 ### Live Demo
 
-Use the following link to test
+Use the following link to test [Link](https://emmanuellmhango.github.io/to-do-list/dist/)
 
 
 ## Authors
